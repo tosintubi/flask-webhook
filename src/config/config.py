@@ -14,7 +14,7 @@ MAX_NBR_TASKS = 100
 WAIT_TIME = 1
 
 # Webhook endpoint mapping to the listener
-WEBHOOK_RECEIVER_URL = os.getenv('WEBHOOK_RECEIVER_URL')
+WEBHOOK_RECEIVER_URL = os.environ.get('WEBHOOK_RECEIVER_URL')
 
 # Map to REDIS server port
-BROKER_URL = os.getenv('BROKER_URL')
+BROKER_URL = os.environ.get('BROKER_URL')

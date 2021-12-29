@@ -8,7 +8,7 @@ import uuid
 from faker import Faker
 from faker.providers import BaseProvider
 
-from src.config import config
+from config import config
 
 
 # Definde TaskProvider
@@ -69,3 +69,24 @@ def send_webhook(msg):
          print(f"An Unknown error occured: {error.message}")
     else:
         return response.status_code
+
+
+# Generating bunch of take tasksProducer
+def produce_bunch_tasks():
+
+    n = random.randint(config.MIN_NBR_TASKS, config.MAX_NBR_TASKS)
+
+    batch_id = str(uuid.uuid4())
+
+    for i in range(n):
+        msg = produce_task(batch_id, i)
+        resp = send_webhook(msg)
+
+        time.sleep(config.WAIT_TIME)
+
+        print(f"out of {n} -- Status {resp} -- Message = {msg}")
+        yield resp, n, msg
+
+if __name__ == "__main__":
+    for res, total, msg in produce_bunch_tasks():
+        pass
