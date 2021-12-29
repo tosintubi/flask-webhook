@@ -71,11 +71,10 @@ def send_webhook(msg):
         return response.status_code
 
 
-# Generating bunch of take tasksProducer
+# Generating bunch of take tasks producers
 def produce_bunch_tasks():
 
     n = random.randint(config.MIN_NBR_TASKS, config.MAX_NBR_TASKS)
-
     batch_id = str(uuid.uuid4())
 
     for i in range(n):
