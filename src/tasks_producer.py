@@ -27,3 +27,15 @@ fake_tasks = Faker('en_US')
 fake_tasks.seed_instance(25)
 
 fake_tasks.add_provider(TaskProvider)
+
+
+# Generate a fake task
+def produce_task(batch_id, task_id):
+    # Compose Message fake task
+    message = {
+        'batch_id':batch_id,
+        'id': task_id,
+        'owner':fake_tasks.unique.name(),
+        'priority': fake_tasks.task_priority()
+    }
+    return message
